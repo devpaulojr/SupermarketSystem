@@ -1,7 +1,7 @@
 package com.devpaulojr.Spring_App.controller;
 
-import com.devpaulojr.Spring_App.model.User;
-import com.devpaulojr.Spring_App.service.UserService;
+import com.devpaulojr.Spring_App.model.Order;
+import com.devpaulojr.Spring_App.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,23 +12,21 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
-public class UserController {
+@RequestMapping(value = "/orders")
+public class OrderController {
 
     @Autowired
-    private UserService service; //Business Rule
+    private OrderService service;
 
-    //EndPoint findAll users | UserService
     @GetMapping
-    public ResponseEntity<List<User>> findAll(){
-        List<User> userList = service.findAll();
-        return ResponseEntity.ok().body(userList);
+    public ResponseEntity<List<Order>> findAll(){
+        List<Order> obj = service.findAll();
+        return ResponseEntity.ok().body(obj);
     }
 
-    //EndPoint findById users | UserService
     @GetMapping(value = "/{id}")
-    public ResponseEntity<User> findById(@PathVariable Long id){
-        User obj = service.findById(id);
+    public ResponseEntity<Order> findById(@PathVariable Long id){
+        Order obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
     }
 }
