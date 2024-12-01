@@ -1,8 +1,10 @@
 package com.devpaulojr.Spring_App.config;
 
+import com.devpaulojr.Spring_App.model.Category;
 import com.devpaulojr.Spring_App.model.Order;
 import com.devpaulojr.Spring_App.model.User;
 import com.devpaulojr.Spring_App.model.enums.OrderStatus;
+import com.devpaulojr.Spring_App.repository.CategoryRepository;
 import com.devpaulojr.Spring_App.repository.OrderRepository;
 import com.devpaulojr.Spring_App.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class UserConfig implements CommandLineRunner {
     @Autowired
     private OrderRepository orderRepository; //Data access
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     @Override
     public void run(String... args) throws Exception {
 
@@ -34,8 +39,13 @@ public class UserConfig implements CommandLineRunner {
         Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.WAITING_PAYMENT ,u2);
         Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.WAITING_PAYMENT, u1);
 
+        Category cat1 = new Category(null, "Electronics");
+        Category cat2 = new Category(null, "Books");
+        Category cat3 = new Category(null, "Computers");
+
         userRepository.saveAll(Arrays.asList(u1, u2));
-        orderRepository.saveAll(Arrays.asList(o1,o2,o3));
+        orderRepository.saveAll(Arrays.asList(o1 ,o2 ,o3));
+        categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 
     }
 }
