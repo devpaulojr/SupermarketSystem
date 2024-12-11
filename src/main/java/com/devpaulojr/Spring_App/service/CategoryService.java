@@ -15,12 +15,15 @@ public class CategoryService {
     @Autowired
     private CategoryRepository repository;
 
+
+    //EndPoint findAll category | repository
     @GetMapping
     public List<Category> findAll(){
         return repository.findAll();
     }
 
-    @GetMapping()
+    //EndPoint findById category | repository
+    @GetMapping
     public Category findById(Long id){
         Optional<Category> obj = repository.findById(id);
         return obj.get();
