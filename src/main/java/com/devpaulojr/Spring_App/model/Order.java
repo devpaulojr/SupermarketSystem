@@ -2,18 +2,14 @@ package com.devpaulojr.Spring_App.model;
 
 import com.devpaulojr.Spring_App.model.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_order")
@@ -29,8 +25,11 @@ public class Order implements Serializable {
     private Integer orderStatus;
 
     @ManyToOne
-    @JoinColumn(name = "client_Id_Fk")
+    @JoinColumn(name = "client_id")
     private User client;
+
+    @OneToMany(mappedBy = "id.order")
+    private Set<OrderItem> items = new HashSet<>();
 
     public Order(){
 
@@ -75,6 +74,10 @@ public class Order implements Serializable {
         if(orderStatus != null){
             this.orderStatus = orderStatus.getCode();
         }
+    }
+
+    public Set<OrderItem> getItems(){
+        return items;
     }
 
     @Override

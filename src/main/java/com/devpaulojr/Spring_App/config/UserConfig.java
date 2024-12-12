@@ -1,14 +1,8 @@
 package com.devpaulojr.Spring_App.config;
 
-import com.devpaulojr.Spring_App.model.Category;
-import com.devpaulojr.Spring_App.model.Order;
-import com.devpaulojr.Spring_App.model.Product;
-import com.devpaulojr.Spring_App.model.User;
+import com.devpaulojr.Spring_App.model.*;
 import com.devpaulojr.Spring_App.model.enums.OrderStatus;
-import com.devpaulojr.Spring_App.repository.CategoryRepository;
-import com.devpaulojr.Spring_App.repository.OrderRepository;
-import com.devpaulojr.Spring_App.repository.ProductRepository;
-import com.devpaulojr.Spring_App.repository.UserRepository;
+import com.devpaulojr.Spring_App.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -34,6 +28,9 @@ public class UserConfig implements CommandLineRunner {
     @Autowired
     private ProductRepository productRepository; //Data access
 
+    @Autowired
+    private OrderItemRepository orderItemRepository; //Data access
+
     @Override
     public void run(String... args) throws Exception {
 
@@ -54,6 +51,11 @@ public class UserConfig implements CommandLineRunner {
         Product p4 = new Product(null, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
         Product p5 = new Product(null, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
 
+        OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
+        OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
+        OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
+        OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
+
         userRepository.saveAll(Arrays.asList(u1, u2));
         orderRepository.saveAll(Arrays.asList(o1 ,o2 ,o3));
         categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
@@ -66,6 +68,8 @@ public class UserConfig implements CommandLineRunner {
         p5.getCategories().add(cat2);
 
         productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
+
+        orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
 
     }
 }
