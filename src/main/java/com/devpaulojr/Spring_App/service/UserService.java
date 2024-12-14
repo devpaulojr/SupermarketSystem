@@ -2,7 +2,9 @@ package com.devpaulojr.Spring_App.service;
 
 import com.devpaulojr.Spring_App.model.User;
 import com.devpaulojr.Spring_App.repository.UserRepository;
+import com.devpaulojr.Spring_App.service.exceptions.DatabaseException;
 import com.devpaulojr.Spring_App.service.exceptions.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -57,9 +59,15 @@ public class UserService {
     //EndPoint delete update | repository
     @PutMapping
     public User update(Long id, User obj){
-        User entity = repository.getReferenceById(id);
-        updatedDate(entity, obj);
-        return repository.save(entity);
+        try {
+            User entity = repository.getReferenceById(id);
+            updatedDate(entity, obj);
+            return repository.save(entity);
+        }
+        catch (EntityNotFoundException error){
+            throw new ResourceNotFoundException(id);
+        }
+
     }
 
     private void updatedDate(User entity, User obj) {

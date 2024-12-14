@@ -1,6 +1,6 @@
 package com.devpaulojr.Spring_App.controller.exceptions;
 
-import com.devpaulojr.Spring_App.service.DatabaseException;
+import com.devpaulojr.Spring_App.service.exceptions.DatabaseException;
 import com.devpaulojr.Spring_App.service.exceptions.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
