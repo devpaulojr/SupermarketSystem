@@ -4,6 +4,8 @@ import com.devpaulojr.Spring_App.model.User;
 import com.devpaulojr.Spring_App.repository.UserRepository;
 import com.devpaulojr.Spring_App.service.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,7 +43,15 @@ public class UserService {
     //EndPoint delete users | repository
     @DeleteMapping
     public void delete(Long id){
-        repository.deleteById(id);
+        try{
+            repository.deleteById(id);
+        }
+        catch (EmptyResultDataAccessException error){
+            throw new ResourceNotFoundException(id);
+        }
+        catch (DataIntegrityViolationException error){
+            throw new DatabaseException(error.getMessage());
+        }
     }
 
     //EndPoint delete update | repository
