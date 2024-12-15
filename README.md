@@ -33,7 +33,7 @@ ___
 3. **Execute o comando de clonagem**
     - Use o comando:
       ```bash
-      git clone <URL-do-repositorio>
+      git clone <https://github.com/devpaulojr/SupermarketSystem>
       ```
 
 4. **Acesse o diretório clonado**
