@@ -1,22 +1,26 @@
 # Supermarket System
 ___
 
+Este projeto foi desenvolvido utilizando a linguagem Java, com o objetivo para criar uma solução eficiente de 
+operações de supermercado. Para auxiliar no entendimento e na implementação do sistema, foi 
+elaborada uma documentação detalhada.
+
 ## Tabela de conteúdos
 - [Tecnologias utilizadas](#Tecnologias-utilizadas)
 - [Como clonar o projeto](#Como-clonar-o-projeto)
 - [Foco do sistema](#Foco-do-sistema)
-- [H2 database proprities](#H2-database-proprities)
+- [h2 properties](#properties)
 - [Arquitetura](#arquitetura)
 - [Features](#features)
 
-## Tecnologias-utilizadas:
+## Tecnologias utilizadas:
 * Java
 * SpringBoot
 * Maven
 * H2 database
 * Spring Data JPA
 
-## Como-clonar-o-projeto:
+## Como clonar o projeto:
 
 1. **Verifique se o Git está instalado**
     - No terminal, execute:
@@ -48,9 +52,9 @@ ___
       ls
       ```
 
-## Foco-do-sistema
+## Foco do sistema
 * Decide atualizar esse projeto, pois muitas pessoas tem dúvidas de como dar o primeiro passo com SpringBoot.
-* Esse projeto é focado na implementação conceitual, lógica de programação, APIs RESTful, organização das camadas.
+* Esse projeto é focado na implementação conceitual, lógica de programação, APIs REST, organização das camadas.
 
 
 
@@ -81,7 +85,8 @@ ___
 
         Payment pay1 = new Payment(null, Instant.parse("2019-06-20T22:53:07Z"), o1);
 
-## H2-database-proprities 
+
+## properties 
 
  ```
  # datasource
