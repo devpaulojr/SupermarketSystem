@@ -60,8 +60,8 @@ elaborada uma documentação detalhada.
 
      Dica de instância em objetos da classe:
       
-        User u1 = new User(null, "paulo", "paulo@gmail.com", "40028922", "152333");
-        User u2 = new User(null, "clara", "clara@gmail.com", "80071525", "999944");
+        User u1 = new User(null, "Maria Brown", "maria@gmail.com", "98888888", "123456");
+        User u2 = new User(null, "Alex Green", "alex@gmail.com", "9777777", "123456");
       
     
         Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.PAID ,u1);
@@ -85,6 +85,22 @@ elaborada uma documentação detalhada.
 
         Payment pay1 = new Payment(null, Instant.parse("2019-06-20T22:53:07Z"), o1);
 
+        userRepository.saveAll(Arrays.asList(u1, u2));
+        orderRepository.saveAll(Arrays.asList(o1 ,o2 ,o3));
+        categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+
+        p1.getCategories().add(cat2);
+        p2.getCategories().add(cat1);
+        p2.getCategories().add(cat3);
+        p3.getCategories().add(cat3);
+        p4.getCategories().add(cat3);
+        p5.getCategories().add(cat2);
+
+        productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
+
+        orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
+
+        orderRepository.save(o1);
 
 ## properties 
 
